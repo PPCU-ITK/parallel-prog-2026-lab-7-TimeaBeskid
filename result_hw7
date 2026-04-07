@@ -1,0 +1,20 @@
+Conclusion of the results.
+
+| Scale | Resolution (Nx x Ny) | CPU Time (s) | GPU Time (s) | Speedup (x) |
+|-------|----------------------|--------------|--------------|-------------|
+| 1x    | 200 x 100            | 0.7867       | 0.5676       | 1.39x       |
+| 4x    | 800 x 400            | 12.6326      | 0.6219       | 20.31x      |
+| 8x    | 1600 x 800           | 63.4072      | 0.9621       | 65.90x      |
+| 16x   | 3200 x 1600          | 234.1950     | 2.1090       | 111.05x     |
+
+
+With the basic 200x100 grid, the GPU is not that much faster than the CPU—only about 1.4 times, 
+this is due to the overhead of transferring data between the CPU and GPU memory spaces, 
+which is more noticeable when the actual computation time is very short.
+The time it takes to move the data from the computer's memory over to the GPU (the data overhead)
+is almost as long as the calculation itself. 
+
+When turning up the resolution (4x,8x,16x times), the CPU really started to slow down compared to the GPU.
+Looking at the 16x scale, the CPU took almost 4 minutes compared to the GPU which only took 2 seconds. 
+This shows, as the problem size increases the parallelism becomes more efficient. 
+The CPU has to process cells more or less one by one, but the GPU can handle thousands of them at the same time, leading to that huge 111x speedup.
